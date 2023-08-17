@@ -2,7 +2,14 @@ version: '3'
 
 services:
   nest-app:
-    image: nest-app:latest
+    build:
+      context: .
+      target: ${STAGE}
+      dockerfile: Dockerfile
+    image: nest-app
+    volumes:
+      - .:/app/
+      - /app/node_modules
     container_name: nest-app
     ports:
       - ${PORT}:${PORT}
@@ -18,7 +25,8 @@ services:
       - DB_PORT=${DB_PORT}
       - PORT=${PORT}
       - HOST_API=${HOST_API}
+
 networks:
   bacsystem-proxy:
-     name: docker_bacsystem
-     external: true
+    name: docker_bacsystem
+    external: true

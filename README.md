@@ -70,21 +70,43 @@ $ npm run test:cov
 
 ```bash
 # image docker build
-$ docker compose build  
+$ docker compose -f docker-compose.dev.yml build 
 
 # docker run container
-$ docker compose up
+$  docker compose -f docker-compose.dev.yml up 
+$  docker compose -f docker-compose.dev.yml up -d
+
+# docker stop and remove container, volumes
+docker compose -f docker-compose.dev.yml down --volumes
+
+
 ```
 
 ## Prod docker
 
 ```bash
 # image docker build
-$  docker compose -f docker-compose.prod.yml build   
+$ docker compose -f docker-compose.dev.yml build 
 
 # docker run container
-$  docker compose -f docker-compose.prod.yml up
+$  docker compose -f docker-compose.dev.yml up 
+$  docker compose -f docker-compose.dev.yml up -d
+
+# docker stop and remove container, volumes
+docker compose -f docker-compose.dev.yml down --volumes
 ```
+
+## Run docker container after Prod docker
+
+```bash
+# docker run container
+$  docker compose up 
+$  docker compose up -d
+
+# docker stop and remove container, volumes
+docker compose down --volumes
+```
+
 
 ### MarkDown
 

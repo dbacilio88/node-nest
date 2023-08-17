@@ -10,6 +10,9 @@ services:
     container_name: nest-app
     ports:
       - ${PORT}:${PORT}
+    networks:
+      - bacsystem-proxy
+
     environment:
       - APP_VERSION=${APP_VERSION}
       - STAGE=${STAGE}
@@ -20,18 +23,8 @@ services:
       - DB_PORT=${DB_PORT}
       - PORT=${PORT}
       - HOST_API=${HOST_API}
-  postgres-db:
-    container_name: ${DB_NAME}
-    image: postgres:15.1
-    restart: always
-    ports:
-      - ${DB_PORT}:${DB_PORT}
-    volumes:
-      - postgres-db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
 
-volumes:
-  postgres-db:
-    external: false
+networks:
+  bacsystem-proxy:
+     name: docker_bacsystem
+     external: true
