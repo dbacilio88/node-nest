@@ -29,20 +29,21 @@ jobs:
     - name: Docker Login
       env: 
         DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
-        DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        NEW_VERSION: ${{ steps.version.outputs.version }}
+        DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}        
       run: |
         echo "Iniciando Login"
         docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
-        echo "Fin del Login"
-        echo "New version: $NEW_VERSION"
+        echo "Fin del Login"        
     - name: Build Docker Image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-        docker build -t dbacilio88/node-nest:0.0.1 .
+        docker build -t dbacilio88/node-nest:$NEW_VERSION" .
         docker build -t dbacilio88/node-nest .
     - name: Push Docker Image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-        docker push dbacilio88/node-nest:0.0.1
+        echo "New version: $NEW_VERSION"
+        docker push dbacilio88/node-nest:$NEW_VERSION"
         docker push dbacilio88/node-nest
-#    - name: Build the Docker image
-#      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
