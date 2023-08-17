@@ -28,8 +28,10 @@ jobs:
     - name: Build Docker Image
       run: |
         docker build -t dbacilio88/node-nest:0.0.1 .
+        docker build -t dbacilio88/node-nest .
     - name: Push Docker Image
       run: |
         docker push dbacilio88/node-nest:0.0.1
+        docker push dbacilio88/node-nest
 #    - name: Build the Docker image
 #      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
