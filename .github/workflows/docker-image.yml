@@ -38,12 +38,12 @@ jobs:
       env:
         NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-        docker build -t dbacilio88/node-nest:$NEW_VERSION" .
+        docker build -t dbacilio88/node-nest:$NEW_VERSION .
         docker build -t dbacilio88/node-nest .
     - name: Push Docker Image
       env:
         NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
         echo "New version: $NEW_VERSION"
-        docker push dbacilio88/node-nest:$NEW_VERSION"
+        docker push dbacilio88/node-nest:$NEW_VERSION
         docker push dbacilio88/node-nest
