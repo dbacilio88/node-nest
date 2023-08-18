@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nest-app:
-    image: nest-app:latest
+    image: dbacilio88/node-nest:0.0.1
     container_name: nest-app
     ports:
       - ${PORT}:${PORT}
